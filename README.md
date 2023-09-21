@@ -12,10 +12,10 @@ The main goal was to export the following information:
 - What permissions are assigned.
 - What is the scope of those assigned permissions.
 
-## The challenge of 'Get-ADGroupMember -Recurse'
+## The challenge of 'Get-ADGroupMember -Recursive'
 With cmdlets like 'Get-ManagementRoleAssignment' and 'Get-ManagementScope' it is quite easy to see what kind of permissions are being assigned, with which scope and also to see the first level of assignment. 
 The challenge was to navigate top-down from the top level assignment, which usually is a RoleGroup or a SecurityGroup, and export the full list of users. 
-This is challenging especially in large environments, in multi-domain forests where the intuitive use of 'Get-ADGroupMember' cmdlet together with the -Recurse switch usually throws some errors, like the one specified [here](https://learn.microsoft.com/en-us/troubleshoot/windows-server/identity/get-adgroupmember-error-remote-forest-members).
+This is challenging especially in large environments, in multi-domain forests where the intuitive use of 'Get-ADGroupMember' cmdlet together with the -Recursive switch usually throws some errors, like the one specified [here](https://learn.microsoft.com/en-us/troubleshoot/windows-server/identity/get-adgroupmember-error-remote-forest-members).
 At a frist glance, local admin rights on the machine are required, together with some not-so-common-for-an-exchange-admin rights ('Remove-ADObject'). 
 Being lazy, I stopped the research and developed my own solution, which gets the members by running the 'Get-ADGroup' cmdlet against the Global Catalog port, and fetching the 'Members' property. 
 Of course, additional iterations are required to fetch each Member from the above output (which is a DN), but hey... that's why the computers are for. To do the work.
