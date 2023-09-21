@@ -72,3 +72,6 @@ The output is going to be 4 CSV files with the following structure:
 
 The CSV files can be merged into Excel, or can be further processed with PowerShell, or Python, etc. for further insights. 
 The columns are exported to cover for my report needs, but can be extended / restricted, if needed. 
+
+## How to run it
+The runbook can be run by sections while connected to Exchange Management Shell / Exchange Online Powershell and AD. 
